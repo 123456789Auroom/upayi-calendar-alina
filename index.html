@@ -909,6 +909,84 @@
             .modal-overlay { padding: 8px; align-items: flex-end; }
             .modal-box { max-height: 94vh; padding: 18px 14px 22px; border-radius: 14px 14px 0 0; }
         }
+        /* THEME SWITCH */
+        html.theme-dark {
+            --bg: #051614;
+            --card-bg: #0d2826;
+            --border: #115e59;
+            --primary: #0f766e;
+            --accent: #d97706;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --gold: #f59e0b;
+        }
+        html.theme-light {
+            --bg: #f6f7f2;
+            --card-bg: #ffffff;
+            --border: #cbd8d1;
+            --primary: #0f766e;
+            --accent: #b45309;
+            --text: #19302d;
+            --text-muted: #5f746e;
+            --gold: #c47a14;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            z-index: 5;
+            min-height: 40px;
+            padding: 8px 12px;
+            border: 1px solid #a9c4b4;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .82);
+            color: #19302d;
+            font: 600 12px Inter, sans-serif;
+            cursor: pointer;
+            box-shadow: 0 3px 12px rgba(40, 70, 55, .12);
+            transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .2s ease;
+        }
+        .theme-toggle:hover { transform: translateY(-1px); }
+        .theme-dark .theme-toggle {
+            background: rgba(13, 40, 38, .92);
+            color: #f1f5f9;
+            border-color: #2b8a80;
+        }
+        .theme-light [style*="color: #cbd5e1"],
+        .theme-light [style*="color:#cbd5e1"],
+        .theme-light [style*="color: #94a3b8"],
+        .theme-light [style*="color:#94a3b8"] { color: #405952 !important; }
+        .theme-light [style*="color: #f1f5f9"],
+        .theme-light [style*="color:#f1f5f9"],
+        .theme-light [style*="color: #fff"],
+        .theme-light [style*="color:#fff"] { color: #19302d !important; }
+        .theme-light [style*="background: rgba(0, 0, 0"],
+        .theme-light [style*="background:rgba(0,0,0"],
+        .theme-light [style*="background: rgba(15, 23, 42"],
+        .theme-light [style*="background:rgba(15, 23, 42"] {
+            background: #eef5f0 !important;
+        }
+        .theme-light [style*="background: rgba(255,255,255"],
+        .theme-light [style*="background:rgba(255,255,255"] { background: #e8f0eb !important; }
+        .theme-light table { color: #405952 !important; }
+        .theme-light code,
+        .theme-light .mantra-box,
+        .theme-light [style*="font-family: monospace"] { text-shadow: none; }
+        .theme-light .modal-overlay { background: rgba(28, 48, 41, .48) !important; }
+        @media (max-width: 700px) {
+            .theme-toggle {
+                position: static;
+                display: block;
+                margin: 0 auto 10px;
+                min-height: 42px;
+                padding: 9px 14px;
+            }
+            header { padding-top: 12px; }
+            .nav-controls { grid-template-columns: 1fr 1.2fr 1fr; }
+            .calendar-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .weekdays-grid, .month-grid { min-width: 700px; }
+            .tab-content { overflow-wrap: anywhere; }
+        }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
         }
@@ -917,6 +995,7 @@
 <body>
 
 <header>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить тему">☀️ Светлая тема</button>
     <div class="header-top">Ведическая традиция Нади • Панчанга и Садхана</div>
     <h1>Дамаянти Дая (Алина Янушковская)</h1>
     <div class="header-sub">ДУХОВНОЕ ИМЯ: ДАМАЯНТИ ДАЯ (DAMAYANTĪ DAYĀ) • СТАТУС: САХАДХАРМИНИ (СОРАТНИЦА В ДХАРМЕ И ЯГЬЯХ)</div>
@@ -2436,6 +2515,27 @@ om sarvapitṛdevatābhyo namaḥ || om tṛpyata tṛpyata tṛpyata ||
         const names = ['', 'Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
         return names[m] || '';
     }
+
+    // Theme preference is local to this browser and survives reloads.
+    (() => {
+        const root = document.documentElement;
+        const toggle = document.getElementById('themeToggle');
+        const saved = localStorage.getItem('alina-calendar-theme');
+        const initial = saved === 'dark' ? 'dark' : 'light';
+
+        const applyTheme = theme => {
+            root.classList.toggle('theme-dark', theme === 'dark');
+            root.classList.toggle('theme-light', theme === 'light');
+            toggle.textContent = theme === 'dark' ? '☀️ Светлая тема' : '🌙 Тёмная тема';
+            toggle.setAttribute('aria-label', theme === 'dark' ? 'Переключить на светлую тему' : 'Переключить на тёмную тему');
+            localStorage.setItem('alina-calendar-theme', theme);
+        };
+
+        applyTheme(initial);
+        toggle.addEventListener('click', () => {
+            applyTheme(root.classList.contains('theme-dark') ? 'light' : 'dark');
+        });
+    })();
 </script>
 </body>
 </html>
