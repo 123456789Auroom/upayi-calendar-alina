@@ -1238,6 +1238,53 @@
             border: 1px solid #e4a0bc;
         }
 
+        /* Light-theme fallback for all legacy inline styles in lower tabs and day modal. */
+        .theme-light .tab-content [style*="color: #fff"],
+        .theme-light .tab-content [style*="color:#fff"],
+        .theme-light .tab-content [style*="color: #f1f5f9"],
+        .theme-light .tab-content [style*="color:#f1f5f9"],
+        .theme-light .tab-content [style*="color: #cbd5e1"],
+        .theme-light .tab-content [style*="color:#cbd5e1"],
+        .theme-light .tab-content [style*="color: #e2e8f0"],
+        .theme-light .tab-content [style*="color:#e2e8f0"],
+        .theme-light .tab-content [style*="color: #a7f3d0"],
+        .theme-light .tab-content [style*="color:#a7f3d0"],
+        .theme-light .tab-content [style*="color: #93c5fd"],
+        .theme-light .tab-content [style*="color:#93c5fd"],
+        .theme-light .tab-content [style*="color: #ddd6fe"],
+        .theme-light .tab-content [style*="color:#ddd6fe"],
+        .theme-light .tab-content [style*="color: #d8b4fe"],
+        .theme-light .tab-content [style*="color:#d8b4fe"],
+        .theme-light .modal-box [style*="color: #fff"],
+        .theme-light .modal-box [style*="color:#fff"],
+        .theme-light .modal-box [style*="color: #f1f5f9"],
+        .theme-light .modal-box [style*="color:#f1f5f9"],
+        .theme-light .modal-box [style*="color: #cbd5e1"],
+        .theme-light .modal-box [style*="color:#cbd5e1"] {
+            color: #29443d !important;
+        }
+        .theme-light .tab-content [style*="font-family: monospace"],
+        .theme-light .modal-box [style*="font-family: monospace"] {
+            color: #17606a !important;
+            background: #eef5f0 !important;
+            border-color: #bfd2c5 !important;
+        }
+        .theme-light .tab-content [style*="background: rgba(0, 0, 0"],
+        .theme-light .tab-content [style*="background: rgba(0,0,0"],
+        .theme-light .modal-box [style*="background: rgba(0, 0, 0"],
+        .theme-light .modal-box [style*="background: rgba(0,0,0"],
+        .theme-light .tab-content [style*="background: rgba(15, 23, 42"],
+        .theme-light .modal-box [style*="background: rgba(15, 23, 42"] {
+            background: #f4f8f5 !important;
+            border-color: #cbd8d1 !important;
+        }
+        .theme-light .tab-content h3,
+        .theme-light .tab-content strong,
+        .theme-light .modal-box h3,
+        .theme-light .modal-box strong {
+            color: #19302d !important;
+        }
+
         @media (max-width: 700px) {
             .theme-toggle {
                 position: static;
