@@ -232,7 +232,8 @@
         }
         .weekdays-grid {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            width: 100%;
             gap: 6px;
             margin-bottom: 6px;
             text-align: center;
@@ -973,6 +974,15 @@
         .theme-light .mantra-box,
         .theme-light [style*="font-family: monospace"] { text-shadow: none; }
         .theme-light .modal-overlay { background: rgba(28, 48, 41, .48) !important; }
+        .theme-light .badge-homa { background: #ffe5e5 !important; color: #a32020 !important; border-color: #e79a9a !important; }
+        .theme-light .badge-tarpana { background: #dff4fb !important; color: #075b78 !important; border-color: #8bcfe3 !important; }
+        .theme-light .badge-puja { background: #fff0c7 !important; color: #7a4a00 !important; border-color: #e3b24e !important; }
+        .theme-light .badge-birds { background: #ffe0ee !important; color: #8f1f55 !important; border-color: #e4a0bc !important; }
+        .theme-light .badge-fast { background: #fff4bd !important; color: #6b5200 !important; border-color: #dfbf4a !important; }
+        .theme-light .badge-totka { background: #e2f1ff !important; color: #075985 !important; border-color: #8dc2e8 !important; }
+        .theme-light .day-tithi.highlight { color: #8a5700 !important; }
+        .theme-light .day-rashi { color: #075985 !important; background: #e2f4fb !important; }
+        .theme-light .day-nak { color: #49635c !important; }
         .theme-light body {
             background: #f6f7f2 !important;
             color: #19302d !important;
