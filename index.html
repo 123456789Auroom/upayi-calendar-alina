@@ -1002,10 +1002,31 @@
         }
         .theme-light .nav-btn,
         .theme-light .filter-pill,
-        .theme-light .select-styled {
+        .theme-light .select-styled,
+        .theme-light .date-select {
+            appearance: auto;
+            -webkit-appearance: menulist;
             background: #ffffff !important;
             color: #19302d !important;
-            border-color: #cbd8d1 !important;
+            border: 1px solid #cbd8d1 !important;
+            color-scheme: light;
+        }
+        .theme-light .date-select option,
+        .theme-light .select-styled option {
+            background: #ffffff !important;
+            color: #19302d !important;
+        }
+        .theme-dark .date-select,
+        .theme-dark .select-styled {
+            background: #0d2826 !important;
+            color: #f1f5f9 !important;
+            border-color: #115e59 !important;
+            color-scheme: dark;
+        }
+        .theme-dark .date-select option,
+        .theme-dark .select-styled option {
+            background: #0d2826 !important;
+            color: #f1f5f9 !important;
         }
         .theme-dark body {
             background: #051614 !important;
