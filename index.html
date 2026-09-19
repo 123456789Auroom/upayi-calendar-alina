@@ -973,6 +973,51 @@
         .theme-light .mantra-box,
         .theme-light [style*="font-family: monospace"] { text-shadow: none; }
         .theme-light .modal-overlay { background: rgba(28, 48, 41, .48) !important; }
+        .theme-dark body {
+            background: #051614 !important;
+            color: #f1f5f9 !important;
+        }
+        .theme-dark header {
+            background: linear-gradient(180deg, rgba(15, 23, 42, .95), rgba(15, 23, 42, .4)) !important;
+            border-bottom-color: #115e59 !important;
+        }
+        .theme-dark .track-card,
+        .theme-dark .day-card,
+        .theme-dark .tab-content,
+        .theme-dark .natal-card,
+        .theme-dark .modal-box {
+            background: #0d2826 !important;
+            border-color: #115e59 !important;
+            color: #f1f5f9 !important;
+        }
+        .theme-dark .nav-btn,
+        .theme-dark .filter-pill,
+        .theme-dark .select-styled {
+            background: rgba(255, 255, 255, .05) !important;
+            color: #f1f5f9 !important;
+            border-color: #115e59 !important;
+        }
+        .theme-dark h1,
+        .theme-dark .track-name,
+        .theme-dark .day-num,
+        .theme-dark .modal-title,
+        .theme-dark .forecast-title,
+        .theme-dark .m-title,
+        .theme-dark .ls-val,
+        .theme-dark .r-name,
+        .theme-dark .tab-content h2,
+        .theme-dark .tab-content h3 { color: #f1f5f9 !important; }
+        .theme-dark .header-sub,
+        .theme-dark .track-desc,
+        .theme-dark .day-nak,
+        .theme-dark .natal-card p,
+        .theme-dark .forecast-sub,
+        .theme-dark .f-desc,
+        .theme-dark .m-note,
+        .theme-dark .ls-desc,
+        .theme-dark .subtitle { color: #94a3b8 !important; }
+        .theme-dark [style*="color: #405952"],
+        .theme-dark [style*="color:#405952"] { color: #cbd5e1 !important; }
         @media (max-width: 700px) {
             .theme-toggle {
                 position: static;
@@ -983,8 +1028,10 @@
             }
             header { padding-top: 12px; }
             .nav-controls { grid-template-columns: 1fr 1.2fr 1fr; }
+            body { overflow-x: hidden; }
             .calendar-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
             .weekdays-grid, .month-grid { min-width: 700px; }
+            .tabs-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
             .tab-content { overflow-wrap: anywhere; }
         }
         @media (prefers-reduced-motion: reduce) {
