@@ -1206,6 +1206,37 @@
             background: #b42318 !important;
             color: #ffffff !important;
         }
+        /* UPAYAS: restore contrast for inline legacy colors */
+        .theme-light #tab-upayas [style*="font-family: monospace"],
+        .theme-light #tab-upayas code {
+            color: #17606a !important;
+            background: #eef5f0 !important;
+            border-color: #bfd2c5 !important;
+        }
+        .theme-light #tab-upayas [style*="color: #fde047"],
+        .theme-light #tab-upayas [style*="color:#fde047"],
+        .theme-light #tab-upayas [style*="color: #7dd3fc"],
+        .theme-light #tab-upayas [style*="color:#7dd3fc"],
+        .theme-light #tab-upayas [style*="color: #fda4af"],
+        .theme-light #tab-upayas [style*="color:#fda4af"],
+        .theme-light #tab-upayas [style*="color: #d8b4fe"],
+        .theme-light #tab-upayas [style*="color:#d8b4fe"] {
+            color: #17606a !important;
+        }
+        .theme-light #tab-upayas [style*="background: rgba(0,0,0"],
+        .theme-light #tab-upayas [style*="background: rgba(0, 0, 0"] {
+            background: #eef5f0 !important;
+            border-color: #bfd2c5 !important;
+        }
+        .theme-light #tab-upayas [style*="color: #ffe4e6"],
+        .theme-light #tab-upayas [style*="color:#ffe4e6"] {
+            color: #8f1d45 !important;
+        }
+        .theme-light #tab-upayas [style*="background: rgba(244, 63, 94, 0.25)"],
+        .theme-light #tab-upayas [style*="background:rgba(244, 63, 94, 0.25)"] {
+            background: #ffe0eb !important;
+            border: 1px solid #e4a0bc;
+        }
 
         @media (max-width: 700px) {
             .theme-toggle {
