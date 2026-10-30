@@ -1,0 +1,186 @@
+/* Shared Svara Yoga integration for Sadhana calendars */
+:root {
+  --svara-ida: #79b8df;
+  --svara-ida-bg: rgba(74, 127, 160, 0.16);
+  --svara-pingala: #f19a73;
+  --svara-pingala-bg: rgba(184, 92, 56, 0.16);
+  --svara-surface: rgba(255, 255, 255, 0.045);
+  --svara-border: rgba(255, 255, 255, 0.12);
+  --svara-text: var(--text, #ece7db);
+  --svara-muted: var(--text-muted, rgba(236, 231, 219, 0.68));
+}
+
+.svara-day-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  margin-top: 5px;
+  padding: 3px 7px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.svara-day-marker.is-ida { color: var(--svara-ida); background: var(--svara-ida-bg); border-color: rgba(121,184,223,.32); }
+.svara-day-marker.is-pingala { color: var(--svara-pingala); background: var(--svara-pingala-bg); border-color: rgba(241,154,115,.32); }
+
+.svara-summary,
+.svara-deep-card,
+.svara-reference-card {
+  color: var(--svara-text);
+  background: var(--svara-surface);
+  border: 1px solid var(--svara-border);
+  border-radius: 14px;
+}
+.svara-summary {
+  position: relative;
+  overflow: hidden;
+  margin: 18px 0;
+  padding: 16px;
+}
+.svara-summary::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--svara-channel-color, var(--svara-ida));
+}
+.svara-summary.is-ida { --svara-channel-color: var(--svara-ida); background: linear-gradient(120deg, var(--svara-ida-bg), var(--svara-surface)); }
+.svara-summary.is-pingala { --svara-channel-color: var(--svara-pingala); background: linear-gradient(120deg, var(--svara-pingala-bg), var(--svara-surface)); }
+.svara-summary-head,
+.svara-deep-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.svara-eyebrow {
+  color: var(--svara-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.svara-summary h3,
+.svara-deep-card h2,
+.svara-deep-card h3,
+.svara-reference-card h3 {
+  color: var(--svara-text) !important;
+  margin: 4px 0 0;
+}
+.svara-channel-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+.svara-channel-badge.is-ida { color: var(--svara-ida); background: var(--svara-ida-bg); }
+.svara-channel-badge.is-pingala { color: var(--svara-pingala); background: var(--svara-pingala-bg); }
+.svara-summary-grid,
+.svara-metrics-grid,
+.svara-reference-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.svara-summary-item,
+.svara-metric {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--svara-border);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, .08);
+}
+.svara-label { display: block; color: var(--svara-muted); font-size: 10px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+.svara-value { display: block; margin-top: 4px; color: var(--svara-text); font-size: 13px; font-weight: 750; overflow-wrap: anywhere; }
+.svara-guidance { margin: 12px 0 0; color: var(--svara-text); font-size: 13px; line-height: 1.55; }
+.svara-guidance strong { color: var(--svara-channel-color, var(--svara-text)); }
+.svara-open-deep {
+  min-height: 40px;
+  margin-top: 13px;
+  padding: 8px 12px;
+  border: 1px solid var(--svara-border);
+  border-radius: 9px;
+  color: var(--svara-text);
+  background: rgba(255,255,255,.06);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.svara-open-deep:hover,
+.svara-open-deep:focus-visible { border-color: var(--svara-channel-color, var(--svara-ida)); outline: none; }
+
+#tab-svara { color: var(--svara-text); }
+.svara-deep-shell { display: grid; gap: 16px; }
+.svara-deep-card,
+.svara-reference-card { padding: 18px; }
+.svara-deep-date { color: var(--svara-muted); font-size: 13px; }
+.svara-practice-steps { margin: 16px 0 0; padding: 0; list-style: none; counter-reset: svara-step; display: grid; gap: 9px; }
+.svara-practice-steps li { position: relative; min-height: 36px; padding: 8px 10px 8px 42px; border-radius: 10px; background: rgba(255,255,255,.04); line-height: 1.45; }
+.svara-practice-steps li::before { counter-increment: svara-step; content: counter(svara-step); position: absolute; left: 10px; top: 8px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: #fff; background: var(--svara-channel-color, #667); font-size: 11px; font-weight: 900; }
+.svara-neighbors { display: grid; grid-template-columns: repeat(7, minmax(92px, 1fr)); gap: 8px; margin-top: 14px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: thin; }
+.svara-neighbor { min-width: 92px; padding: 10px 8px; border: 1px solid var(--svara-border); border-radius: 10px; color: var(--svara-text); background: rgba(255,255,255,.035); text-align: center; cursor: pointer; }
+.svara-neighbor.is-selected { border-color: var(--svara-channel-color); box-shadow: inset 0 0 0 1px var(--svara-channel-color); }
+.svara-neighbor-date { display: block; font-size: 11px; color: var(--svara-muted); }
+.svara-neighbor-channel { display: block; margin-top: 5px; font-size: 11px; font-weight: 900; }
+.svara-neighbor.is-ida .svara-neighbor-channel { color: var(--svara-ida); }
+.svara-neighbor.is-pingala .svara-neighbor-channel { color: var(--svara-pingala); }
+.svara-reference-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.svara-reference-card p { margin: 8px 0 0; color: var(--svara-muted); line-height: 1.55; }
+.svara-caveat { margin: 0; padding: 12px 14px; border-left: 3px solid #c69a4b; color: var(--svara-muted); background: rgba(198,154,75,.08); font-size: 12px; line-height: 1.5; }
+.svara-empty { padding: 18px; border: 1px dashed var(--svara-border); border-radius: 12px; color: var(--svara-muted); }
+
+html.theme-light {
+  --svara-ida: #246c91;
+  --svara-ida-bg: rgba(36,108,145,.11);
+  --svara-pingala: #a84825;
+  --svara-pingala-bg: rgba(168,72,37,.11);
+  --svara-surface: #ffffff;
+  --svara-border: rgba(25,48,45,.18);
+  --svara-text: #19302d;
+  --svara-muted: #52645f;
+}
+html.theme-light .svara-summary-item,
+html.theme-light .svara-metric,
+html.theme-light .svara-practice-steps li,
+html.theme-light .svara-neighbor { background: #f6f7f2; }
+html.theme-light .svara-open-deep { background: #f6f7f2; }
+
+@media (max-width: 760px) {
+  html, body { max-width: 100%; overflow-x: hidden; }
+  .nav-controls { flex-wrap: wrap; justify-content: center; max-width: 100%; }
+  .calendar-container { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .calendar-container .weekdays-grid,
+  .calendar-container .month-grid { min-width: 700px; }
+  #dayModal { padding: 0 !important; align-items: flex-end; }
+  #dayModal .modal-box,
+  #dayModal .modal-content,
+  #dayModal > div { box-sizing: border-box; width: 100% !important; min-width: 0 !important; max-width: 100% !important; max-height: 94vh; border-radius: 16px 16px 0 0; padding-left: 14px !important; padding-right: 14px !important; overflow-x: hidden; }
+  #dayModal .forecast-grid,
+  #dayModal .muhurtas-grid,
+  #dayModal .ratings-grid { grid-template-columns: 1fr !important; min-width: 0 !important; }
+  .svara-day-marker { padding: 3px 5px; font-size: 9px; }
+  .svara-summary { padding: 14px; }
+  .svara-summary-head,
+  .svara-deep-head { align-items: stretch; flex-direction: column; }
+  .svara-channel-badge { width: fit-content; }
+  .svara-summary-grid,
+  .svara-metrics-grid,
+  .svara-reference-grid { grid-template-columns: 1fr; }
+  .svara-deep-card,
+  .svara-reference-card { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svara-open-deep, .svara-neighbor { transition: none !important; scroll-behavior: auto !important; }
+}
