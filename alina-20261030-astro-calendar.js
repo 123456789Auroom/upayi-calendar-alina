@@ -32,7 +32,7 @@
             return gap > 0 && gap <= 18 * 86400000;
         });
     const inCorridor = (pair, day) => pair.first.local_date < day && day < pair.second.local_date;
-    const corridorText = pair => `Первое затмение: ${localTime(pair.first.maximum_utc)}; второе: ${localTime(pair.second.maximum_utc)} (${zone}). Промежуток заканчивается с наступлением дня второго затмения, ${pair.second.local_date}; само затмение показано отдельно. Время максимумов не является временем местных контактов.`;
+    const corridorText = pair => `Первое затмение: ${localTime(pair.first.maximum_utc)}; второе: ${localTime(pair.second.maximum_utc)}. Промежуток заканчивается с наступлением дня второго затмения, ${pair.second.local_date}; само затмение показано отдельно. Время максимумов не является временем местных контактов.`;
     function intervalOnDay(interval, isoDate) {
         if (prepared.has(interval)) {
             const [start, end] = prepared.get(interval);
@@ -70,14 +70,16 @@
             if (!intervalOnDay(period, isoDate)) continue;
             let message = 'Ретроградный Меркурий: проверять договорённости, адреса и документы; полезно возвращаться к незавершённому. ' +
                 'Поездки и сделки не запрещены: перепроверять условия и оставлять запас времени.';
-            message += ` Начало: ${localTime(period.start_utc)}. Завершение: ${localTime(period.end_utc)} (${zone}).`;
+            if (isoDate === localDate(period.start_utc)) {
+                message += ` Сегодня начинается ретроградный период: ${localTime(period.start_utc)}. Заканчивается: ${localTime(period.end_utc)}.`;
+            }
             add('mercury_retrograde', message);
         }
         for (const period of periods.moon_vrischika || []) {
             if (!intervalOnDay(period, isoDate)) continue;
             let message = 'Луна во Вришчике (нича): полезны спокойные привычные дела и внимательное отношение к реакциям. ' +
                 'Не делать поспешных выводов из сильных эмоций; личная садхана идёт своим чередом.';
-            message += ` Вход: ${localTime(period.start_utc)}. Выход: ${localTime(period.end_utc)} (${zone}).`;
+            message += ` Вход: ${localTime(period.start_utc)}. Выход: ${localTime(period.end_utc)}.`;
             add('moon_vrischika', message);
         }
         const extraPeriods = {
@@ -88,7 +90,7 @@
         };
         for (const [key, title] of Object.entries(extraPeriods)) {
             for (const period of periods[key] || []) {
-                if (intervalOnDay(period, isoDate)) add(key, `${title}. С ${localTime(period.start_utc)} до ${localTime(period.end_utc)} (${zone}).`);
+                if (intervalOnDay(period, isoDate)) add(key, `${title}. С ${localTime(period.start_utc)} до ${localTime(period.end_utc)}.`);
             }
         }
         for (const event of dataset.moon_jupiter_conjunctions || []) {
